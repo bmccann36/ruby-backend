@@ -1,28 +1,17 @@
 require 'bundler/setup'
-require "aws-sdk"
-require 'json'
+require 'aws-sdk-dynamodb'
+require 'aws-sdk-s3'
 
-@dynamodb = Aws::DynamoDB::Client.new
+DDB_ClIENT = Aws::DynamoDB::Client.new
+
+def process(event:, context:)
 
 
-def hello(event:, context:) 
-  table_name = 'LeekoMessageTemplate'
+  resp = DDB_ClIENT.put_item({
+    item: event,
+    table_name: 'LeekoMessageTemplate',
+  })
 
-  item = event
-  
-  params = {
-      table_name: table_name,
-      item: item
-  }
-  
-  begin
-      @dynamodb.put_item(params)
-      puts "Added item "
-  
-  rescue  Aws::DynamoDB::Errors::ServiceError => error
-      puts "Unable to add item:"
-      puts "#{error.message}"
-  end
+  puts "Stored "
 
-  return 'function done'
 end

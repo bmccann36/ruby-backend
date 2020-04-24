@@ -903,6 +903,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk (~> 3.0)
+  aws-sdk-dynamodb (~> 1.45)
   colorize (~> 0.8.1)
 
 BUNDLED WITH

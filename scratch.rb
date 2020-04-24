@@ -1,8 +1,10 @@
 require './handler.rb'
+require 'json'
 
 item_to_save = {
   templateId: 'yoyoyo',
   encodedHtml: 'mynewitem'
 }
 
-hello(event: item_to_save,context:{})
+process(event: item_to_save,context:{})
+
